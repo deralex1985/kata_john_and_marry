@@ -20,9 +20,16 @@ class RouteOptimizerTest extends Specification {
     def "ensure all possible array combinations are calculated"() {
         given:
         def routeOptimizer = new RouteOptimizer()
-        def nrOfCities = 3
-        int[] distances = [50, 55, 57, 58, 60]
-        List<int[]> expectedCombinations = [[50,55,57],[50,55,58],[50,55,60],[50,57,58],[50,57,60],[50,58,60],[55,57,58],[55,57,60],[55,58,60],[57,58,60]]
+        def nrOfCities = 2
+        int[] distances = [50, 55, 57]
+        List<int[]> expectedCombinations = [
+                [50, 55],
+                [50, 57],
+                [55, 50],
+                [55, 57],
+                [57, 50],
+                [57, 55]
+        ]
 
         when:
         def combinations = routeOptimizer.calculateAllPossibleCombinations(nrOfCities, distances)
